@@ -5,6 +5,7 @@ import domainmodel.Notes;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -26,15 +27,15 @@ public class NoteServlet extends HttpServlet {
                 Notes notes = ns.get(selectedNoteId);
                 request.setAttribute("selectedNote", notes);
             } catch (Exception ex) {
-                Logger.getLogger(UserServlet.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(NoteServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         
-        ArrayList<Notes> notes = null;        
+        List<Notes> notes = null;        
         try {
-            notes = (ArrayList<Notes>) ns.getAll();
+            notes = (List<Notes>) ns.getAll();
         } catch (Exception ex) {
-            Logger.getLogger(UserServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(NoteServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
         request.setAttribute("notes", notes);
         getServletContext().getRequestDispatcher("/WEB-INF/notes.jsp").forward(request, response);
@@ -69,9 +70,9 @@ public class NoteServlet extends HttpServlet {
             request.setAttribute("errorMessage", "Whoops.  Could not perform that action.");
         }
         
-        ArrayList<Notes> notes = null;
+        List<Notes> notes = null;
         try {
-            notes = (ArrayList<Notes>) ns.getAll();
+            notes = (List<Notes>) ns.getAll();
         } catch (Exception ex) {
             Logger.getLogger(NoteServlet.class.getName()).log(Level.SEVERE, null, ex);
         }

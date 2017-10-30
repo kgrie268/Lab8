@@ -1,7 +1,7 @@
 package dataaccess;
 
 import domainmodel.Notes;
-import domainmodel.User;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -54,10 +54,10 @@ public class NoteDB {
     public List<Notes> getAll() throws NotesDBException {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
-            List<Notes> notes = em.createNamedQuery("User.findAll", Notes.class).getResultList();
+            List<Notes> notes = em.createNamedQuery("Notes.findAll", Notes.class).getResultList();
             return notes;
         } catch (Exception ex) {
-            Logger.getLogger(UserDB.class.getName()).log(Level.SEVERE, "Cannot read users", ex);
+            Logger.getLogger(NoteDB.class.getName()).log(Level.SEVERE, "Cannot read users", ex);
             throw new NotesDBException("Error getting Users");
         } finally {
             em.close();
@@ -78,7 +78,7 @@ public class NoteDB {
             Notes notes = em.find(Notes.class, noteId);
             return notes;
         } catch (Exception ex) {
-            Logger.getLogger(UserDB.class.getName()).log(Level.SEVERE, "Cannot read users", ex);
+            Logger.getLogger(NoteDB.class.getName()).log(Level.SEVERE, "Cannot read users", ex);
             throw new NotesDBException("Error getting Users");
         } finally {
             em.close();
